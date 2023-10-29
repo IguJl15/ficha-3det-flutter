@@ -1,0 +1,1 @@
+const assetsFolder = "assets/images";

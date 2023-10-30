@@ -76,23 +76,29 @@ class _CharSkillsSessionState extends State<CharSkillsSession> {
               margin: const EdgeInsets.all(0),
               shadowColor: Colors.transparent,
               shape: const Border(),
-              child: Column(
-                children: rows
-                    .map((row) => Row(
-                          children: row
-                              .map((item) => Expanded(
-                                    child: item != null
-                                        ? SkillTile(
-                                            skill: item,
-                                            selected: widget.selectedSkills.contains(item),
-                                            onSelectButtonPress: widget.selectSkill,
-                                          )
-                                        : Container(),
-                                  ))
-                              .toList(),
-                        ))
-                    .toList(),
-              ),
+              child: widget.skills.isEmpty
+                  ? Center(
+                      child: Container(
+                      padding: const EdgeInsets.all(8),
+                      child: const Text('Nenhuma Perícia'),
+                    ))
+                  : Column(
+                      children: rows
+                          .map((row) => Row(
+                                children: row
+                                    .map((item) => Expanded(
+                                          child: item != null
+                                              ? SkillTile(
+                                                  skill: item,
+                                                  selected: widget.selectedSkills.contains(item),
+                                                  onSelectButtonPress: widget.selectSkill,
+                                                )
+                                              : Container(),
+                                        ))
+                                    .toList(),
+                              ))
+                          .toList(),
+                    ),
             ),
           ),
         );

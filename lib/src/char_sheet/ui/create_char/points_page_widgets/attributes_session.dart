@@ -1,5 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:ficha_3det_victory/src/char_sheet/entities/resources.dart';
+import '../../../entities/resources.dart';
+import '../../../../shared/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
@@ -8,6 +8,8 @@ import '../../../models/edit_char_sheet.dart';
 import '../../widgets/attributes/attributes_selector.dart';
 import 'expandable_card.dart';
 import 'session_header.dart';
+
+const _divider = Divider(height: 0, indent: 16, endIndent: 16);
 
 class CharAttributesSession extends StatefulWidget {
   final Attributes attributes;
@@ -91,7 +93,7 @@ class _CharAttributesSessionState extends State<CharAttributesSession> {
                     enableInfiniteScroll: false,
                     viewportFraction: 1,
                     showIndicator: true,
-                    physics: PageScrollPhysics(),
+                    physics: const PageScrollPhysics(),
                     slideIndicator: CircularWaveSlideIndicator(
                       indicatorRadius: 4,
                       itemSpacing: 12,
@@ -141,6 +143,7 @@ class _Attributes extends StatelessWidget {
           increment: () => incrementAttribute(CharAttribute.power),
           decrement: () => decrementAttribute(CharAttribute.power),
         ),
+        _divider,
         AttributeSelector(
           value: attributes.ability,
           title: const Text("Habilidade"),
@@ -148,6 +151,7 @@ class _Attributes extends StatelessWidget {
           increment: () => incrementAttribute(CharAttribute.ability),
           decrement: () => decrementAttribute(CharAttribute.ability),
         ),
+        _divider,
         AttributeSelector(
           value: attributes.resistance,
           title: const Text("Resistencia"),
@@ -170,19 +174,21 @@ class _Resources extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
-          title: const Text("Ponto de Ação"),
+          title: const Text("Pontos de Ação"),
           trailing: Text("${resources.action}"),
-          leadingAndTrailingTextStyle: Theme.of(context).textTheme.bodyMedium,
+          leadingAndTrailingTextStyle: context.theme.textTheme.labelLarge,
         ),
+        _divider,
         ListTile(
-          title: const Text("Ponto de Mana"),
+          title: const Text("Pontos de Mana"),
           trailing: Text("${resources.mana}"),
-          leadingAndTrailingTextStyle: Theme.of(context).textTheme.bodyMedium,
+          leadingAndTrailingTextStyle: context.theme.textTheme.labelLarge,
         ),
+        _divider,
         ListTile(
-          title: const Text("Ponto de Vida"),
+          title: const Text("Pontos de Vida"),
           trailing: Text("${resources.health}"),
-          leadingAndTrailingTextStyle: Theme.of(context).textTheme.bodyMedium,
+          leadingAndTrailingTextStyle: context.theme.textTheme.labelLarge,
         ),
       ],
     );

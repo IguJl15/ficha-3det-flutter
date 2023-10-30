@@ -83,20 +83,22 @@ class _ConceptPageState extends State<ConceptPage> {
                         ),
                       ),
                       Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
                         child: Padding(
-                          padding: const EdgeInsets.all(4),
+                          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               FilledButton.tonalIcon(
                                 label: const Text("Alterar foto"),
                                 icon: const Icon(Icons.photo_camera),
-                                onPressed: () {
-                                  _pickImage().then((value) {
-                                    if (value != null) viewModel.setImageUrl(value);
-                                  });
-                                },
+                                onPressed: Platform.isIOS
+                                    ? null
+                                    : () {
+                                        _pickImage().then((value) {
+                                          if (value != null) viewModel.setImageUrl(value);
+                                        });
+                                      },
                               ),
                               if (charSheet.profilePhotoUrl != null)
                                 Padding(

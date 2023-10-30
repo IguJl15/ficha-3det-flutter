@@ -1,16 +1,15 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
-import 'package:ficha_3det_victory/src/shared/components/grid_list.dart';
-import 'package:ficha_3det_victory/src/shared/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:ficha_3det_victory/src/char_sheet/data/repositories/char_sheet_repository.dart';
-import 'package:ficha_3det_victory/src/char_sheet/entities/char_sheet.dart';
-import 'package:ficha_3det_victory/src/char_sheet/models/list_chars_sheets.dart';
+import '../../../shared/components/grid_list.dart';
+import '../../../shared/extensions/context_extensions.dart';
+import '../../data/repositories/char_sheet_repository.dart';
+import '../../entities/char_sheet.dart';
+import '../../models/list_chars_sheets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -43,11 +42,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   void pushEditCharPage(CharSheet? charSheet) {
-    context.pushNamed(
-      "edit",
-      extra: charSheet,
-      pathParameters: {if (charSheet != null) 'id': '${charSheet.id}'},
-    ).then((value) => viewModel.fetchCharSheets());
+    if (charSheet != null) {
+      context.pushNamed(
+        "edit",
+        extra: charSheet,
+        pathParameters: {'id': '${charSheet.id}'},
+      ).then((value) => viewModel.fetchCharSheets());
+    } else {
+      context
+          .pushNamed(
+            "create",
+            extra: charSheet,
+          )
+          .then((value) => viewModel.fetchCharSheets());
+    }
   }
 
   void selectCharSheet(CharSheet charSheet) {
@@ -192,37 +200,40 @@ class CharSheetTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8),
-      child: ListTile(
-        title: Text(charSheet.name),
-        subtitle: Text("${charSheet.points} pontos"),
-        onTap: onTap,
-        onLongPress: onLongPress,
-        visualDensity: VisualDensity.standard,
-        selected: isSelected,
-        tileColor: context.theme.colorScheme.surfaceVariant,
-        selectedTileColor: Theme.of(context).colorScheme.secondaryContainer,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        titleTextStyle: context.theme.textTheme.titleMedium,
-        leading: CircleAvatar(
-          radius: 24,
-          backgroundImage:
-              charSheet.profilePhotoUrl != null ? FileImage(File(charSheet.profilePhotoUrl!), scale: 0.1) : null,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              if (isSelected)
-                Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  decoration: ShapeDecoration(
-                    shape: const CircleBorder(),
-                    color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.6),
+      child: Card(
+        elevation: 1 / 2,
+        clipBehavior: Clip.antiAlias,
+        margin: const EdgeInsets.all(0),
+        child: ListTile(
+          title: Text(charSheet.name),
+          subtitle: Text("${charSheet.points} pontos"),
+          onTap: onTap,
+          selected: isSelected,
+          onLongPress: onLongPress,
+          tileColor: context.theme.colorScheme.surface,
+          selectedTileColor: Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.3),
+          titleTextStyle: context.theme.textTheme.titleMedium,
+          leading: CircleAvatar(
+            radius: 24,
+            backgroundImage:
+                charSheet.profilePhotoUrl != null ? FileImage(File(charSheet.profilePhotoUrl!), scale: 0.1) : null,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                if (isSelected)
+                  Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    decoration: ShapeDecoration(
+                      shape: const CircleBorder(),
+                      color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.6),
+                    ),
+                    child: const Icon(Icons.check),
                   ),
-                  child: const Icon(Icons.check),
-                ),
-              if (!isSelected && charSheet.profilePhotoUrl == null)
-                charSheet.name.length >= 2 ? Text(charSheet.name.substring(0, 2)) : const Icon(Icons.person_outline),
-            ],
+                if (!isSelected && charSheet.profilePhotoUrl == null)
+                  charSheet.name.length >= 2 ? Text(charSheet.name.substring(0, 2)) : const Icon(Icons.person_outline),
+              ],
+            ),
           ),
         ),
       ),

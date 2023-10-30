@@ -65,9 +65,12 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return FlutterSplashScreen(
-      backgroundColor: context.theme.colorScheme.onBackground,
-      splashScreenBody: Column(
-        children: [Image.asset(splashImage), const Text("Olá")],
+      backgroundColor: context.theme.colorScheme.background,
+      splashScreenBody: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Image.asset(splashImage), const Text("Olá")],
+        ),
       ),
       asyncNavigationCallback: () async {
         Future.delayed(const Duration(seconds: 5)).then(

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:ficha_3det_victory/src/char_sheet/entities/char_alignment.dart';
-import 'package:ficha_3det_victory/src/char_sheet/entities/resources.dart';
+import '../../entities/char_alignment.dart';
+import '../../entities/resources.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../entities/advantage.dart';
@@ -71,7 +71,7 @@ class LocalCharSheetsRepository implements CharSheetsRepository {
     if (charSheet.id >= 0) {
       savedCharSheets.removeWhere((element) => element["id"] == charSheet.id);
     } else {
-      charSheet.id = (savedCharSheets.lastOrNull["id"] + 1) ?? 0;
+      charSheet.id = (savedCharSheets.lastOrNull?["id"] as int?) ?? 0;
     }
 
     savedCharSheets.add(charSheet.toMap());

@@ -1,0 +1,21 @@
+{
+  "@@locale": "en",
+  "charAlignment": "{alignment, select, Neutral{Neutral} NeutralGood{Neutral Good} NeutralEvil{Neutral Evil} LawfulNeutral{Lawful Neutral} LawfulGood{Lawful Good} LawfulEvil{Lawful Evil} ChaoticNeutral{ChaoticNeutral} ChaoticGood{Chaotic Good} ChaoticEvil{Chaotic Evil} other{Unknown}}",
+  "charAttr_attributes": "Attributes",
+  "charAttr_lore": "Lore",
+  "charAttr_name": "Name",
+  "charAttr_points": "Points",
+  "charAttr_resources": "Resources",
+  "home_appTitle": "3DeT Victory Character Sheet",
+  "home_campaignsTitle": "Campaigns",
+  "home_characters": "Characters",
+  "home_newChar": "New",
+  "newCharConcept_PageName": "Concept",
+  "newCharConcept_emptyNameValidationMessage": "You must name your character",
+  "newCharConcept_loreInputHint": "John was raised on a distant realm...",
+  "newCharConcept_nameInputHint": "John Smith",
+  "newCharPoints_PageName": "Points",
+  "newCharTitle": "New Character",
+  "splash_hello": "Hello",
+  "newCharConcept_changePhoto": "Change picture"
+}

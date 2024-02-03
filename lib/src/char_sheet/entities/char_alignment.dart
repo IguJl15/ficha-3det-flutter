@@ -1,17 +1,17 @@
 enum CharAlignment {
-  lawfulGood("Leal Bom"),
-  neutralGood("Neutro Bom"),
-  chaoticGood("Caótico Bom"),
-  lawfulNeutral("Leal Neutro"),
-  neutral("Neutro"),
-  chaoticNeutral("Caótico Neutro"),
-  lawfulEvil("Leal Mal"),
-  neutralEvil("Neutro Mal"),
-  chaoticEvi("Caótico Mal");
+  lawfulGood("LawfulGood"),
+  neutralGood("NeutralGood"),
+  chaoticGood("ChaoticGood"),
+  lawfulNeutral("LawfulNeutral"),
+  neutral("Neutral"),
+  chaoticNeutral("ChaoticNeutral"),
+  lawfulEvil("LawfulEvil"),
+  neutralEvil("NeutralEvil"),
+  chaoticEvi("ChaoticEvi");
 
-  const CharAlignment(this.verbose);
+  const CharAlignment(this.localizationString);
 
-  final String verbose;
+  final String localizationString;
 
   static CharAlignment tryParse(String value) {
     return values.firstWhere(

@@ -1,4 +1,5 @@
 import 'package:ficha_3det_victory/src/char_sheet/entities/char_sheet.dart';
+import 'package:ficha_3det_victory/src/shared/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,6 +45,7 @@ class _CreateCharPageState extends State<CreateCharPage> with TickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    // Simular outro idioma no aparelho
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -64,10 +66,12 @@ class _CreateCharPageState extends State<CreateCharPage> with TickerProviderStat
                     SliverOverlapAbsorber(
                       handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                       sliver: Selector<CreateCharViewModel, String>(
-                        selector: (p0, p1) => p1.state.name,
-                        builder: (context, value, child) {
-                          var title = 'Novo personagem';
-                          if (value.length > 2) title = value;
+                        selector: (_, p1) => p1.state.name,
+                        builder: (context, value, _) {
+                          var title = context.l.newCharTitle;
+
+                          if (value.trim().length > 2) title = value;
+
                           return SliverAppBar(
                             title: Text(title),
                             snap: true,
@@ -76,7 +80,10 @@ class _CreateCharPageState extends State<CreateCharPage> with TickerProviderStat
                             forceElevated: innerBoxIsScrolled,
                             bottom: TabBar(
                               controller: _tabController,
-                              tabs: const [Tab(text: "Conceito"), Tab(text: "Pontos")],
+                              tabs: [
+                                Tab(text: context.l.newCharConcept_PageName),
+                                Tab(text: context.l.newCharPoints_PageName),
+                              ],
                             ),
                           );
                         },

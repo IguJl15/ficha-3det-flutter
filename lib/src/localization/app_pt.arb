@@ -1,6 +1,77 @@
 {
-  "appTitle": "Ficha de personagem 3DeT Victory",
-  "@appTitle": {
+  "@@locale": "pt",
+  "charAlignment": "{alignment, select, Neutral{Neutro} NeutralGood{Neutro Bom} NeutralEvil{Neutro Mal} LawfulNeutral{Leal Neutro} LawfulGood{Leal Bom} LawfulEvil{Leal Mal} ChaoticNeutral{Caótico Neutro} ChaoticGood{Caótico Bom} ChaoticEvil{Caótico Mal} other{Desconhecido}}",
+  "@charAlignment": {
+    "description": "Char alignment set",
+    "placeholders": {
+      "alignment": {
+        "type": "String"
+      }
+    }
+  },
+  "charAttr_attributes": "Atributos",
+  "@charAttr_attributes": {
+    "description": "Name of the 'attributes' attribute on character sheet"
+  },
+  "charAttr_lore": "História",
+  "@charAttr_lore": {
+    "description": "Name of the 'lore' attribute on character sheet"
+  },
+  "charAttr_name": "Nome",
+  "@charAttr_name": {
+    "description": "Name of the 'name' attribute on character sheet"
+  },
+  "charAttr_points": "Pontos",
+  "@charAttr_points": {
+    "description": "Name of the 'points' attribute on character sheet"
+  },
+  "charAttr_resources": "Recursos",
+  "@charAttr_resources": {
+    "description": "Name of the 'resources' attribute on character sheet"
+  },
+  "home_appTitle": "Ficha de personagem 3DeT Victory",
+  "@home_appTitle": {
     "description": "The title of the application"
+  },
+  "home_campaignsTitle": "Campanhas",
+  "@home_campaignsTitle": {
+    "description": "Campaigns title"
+  },
+  "home_characters": "Personagens",
+  "@home_characters": {
+    "description": "characters"
+  },
+  "home_newChar": "Novo",
+  "@home_newChar": {
+    "description": "Name displayed on primary button to create a new char"
+  },
+  "newCharConcept_changePhoto": "Alterar imagem",
+  "newCharConcept_PageName": "Conceito",
+  "@newCharConcept_PageName": {
+    "description": "New char concept page name"
+  },
+  "newCharConcept_emptyNameValidationMessage": "Escolha um nome",
+  "@newCharConcept_emptyNameValidationMessage": {
+    "description": "New char concept Empty name validation message"
+  },
+  "newCharConcept_loreInputHint": "João nasceu em uma área remota ao sul...",
+  "@newCharConcept_loreInputHint": {
+    "description": "New char concept page lore input hint"
+  },
+  "newCharConcept_nameInputHint": "João da Silva",
+  "@newCharConcept_nameInputHint": {
+    "description": "New char concept page name input hint"
+  },
+  "newCharPoints_PageName": "Pontos",
+  "@newCharPoints_PageName": {
+    "description": "New char points page name"
+  },
+  "newCharTitle": "Novo Personagem",
+  "@newCharTitle": {
+    "description": "title that should appear on char creation page"
+  },
+  "splash_hello": "Olá",
+  "@splash_hello": {
+    "description": "hello"
   }
 }

@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:ficha_3det_victory/src/shared/extensions/context_extensions.dart';
+
 import '../../entities/char_alignment.dart';
 import '../../models/edit_char_sheet.dart';
 import 'concept_page_widgets/alignment_selection_dialog.dart';
@@ -78,7 +80,9 @@ class _ConceptPageState extends State<ConceptPage> {
                           color: Theme.of(context).colorScheme.surfaceVariant,
                           shadows: kElevationToShadow[4],
                           image: charSheet.profilePhotoUrl != null
-                              ? DecorationImage(image: FileImage(File(charSheet.profilePhotoUrl!)), fit: BoxFit.cover)
+                              ? DecorationImage(
+                                  image: FileImage(File(charSheet.profilePhotoUrl!)),
+                                  fit: BoxFit.cover)
                               : null,
                         ),
                       ),
@@ -90,7 +94,7 @@ class _ConceptPageState extends State<ConceptPage> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               FilledButton.tonalIcon(
-                                label: const Text("Alterar foto"),
+                                label: Text(context.l.newCharConcept_changePhoto),
                                 icon: const Icon(Icons.photo_camera),
                                 onPressed: Platform.isIOS
                                     ? null
@@ -108,10 +112,10 @@ class _ConceptPageState extends State<ConceptPage> {
                                     onPressed: () => viewModel.setImageUrl(null),
                                     icon: const Icon(Icons.delete),
                                     style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStatePropertyAll(Theme.of(context).colorScheme.errorContainer),
-                                      iconColor:
-                                          MaterialStatePropertyAll(Theme.of(context).colorScheme.onErrorContainer),
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          Theme.of(context).colorScheme.errorContainer),
+                                      iconColor: MaterialStatePropertyAll(
+                                          Theme.of(context).colorScheme.onErrorContainer),
                                     ),
                                   ),
                                 ),
@@ -122,13 +126,17 @@ class _ConceptPageState extends State<ConceptPage> {
                     ],
                   ),
                   const SizedBox(height: 8),
-                  TextField(
+                  TextFormField(
                     controller: nameController,
-                    onChanged: (name) => viewModel.setName(name),
-                    decoration: const InputDecoration(
-                      label: Text("Nome"),
-                      hintText: "João da Silva",
-                      border: OutlineInputBorder(),
+                    onChanged: viewModel.setName,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) => value?.isEmpty == true
+                        ? context.l.newCharConcept_emptyNameValidationMessage
+                        : null,
+                    decoration: InputDecoration(
+                      label: Text(context.l.charAttr_name),
+                      hintText: context.l.newCharConcept_nameInputHint,
+                      border: const OutlineInputBorder(),
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -136,16 +144,16 @@ class _ConceptPageState extends State<ConceptPage> {
                     maxLines: 3,
                     controller: loreController,
                     onChanged: (name) => viewModel.setLore(name),
-                    decoration: const InputDecoration(
-                      label: Text("História"),
-                      hintText: "João nasceu em uma área remota...",
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      label: Text(context.l.charAttr_lore),
+                      hintText: context.l.newCharConcept_loreInputHint,
+                      border: const OutlineInputBorder(),
                       alignLabelWithHint: true,
                     ),
                   ),
                   const SizedBox(height: 8),
                   ListTile(
-                    title: Text(charSheet.alignment.verbose),
+                    title: Text(context.l.charAlignment(charSheet.alignment.localizationString)),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                       side: BorderSide(width: 1, color: Theme.of(context).colorScheme.outline),

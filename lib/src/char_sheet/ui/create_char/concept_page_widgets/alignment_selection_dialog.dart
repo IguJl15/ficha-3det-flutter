@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:ficha_3det_victory/src/shared/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../entities/char_alignment.dart';
 
@@ -70,7 +72,7 @@ class _AlignmentSelectionDialogState extends State<AlignmentSelectionDialog> {
                         onTap: () => Navigator.pop(context, CharAlignment.values[index]),
                         child: Center(
                           child: Text(
-                            CharAlignment.values[index].verbose,
+                            context.l.charAlignment(CharAlignment.values[index].localizationString),
                             textAlign: TextAlign.center,
                             style: const TextStyle(fontWeight: FontWeight.w500),
                           ),

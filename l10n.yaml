@@ -1,3 +1,9 @@
-arb-dir: lib/src/localization
 template-arb-file: app_pt.arb
-output-localization-file: app_localizations.dart
+
+arb-dir: lib/src/localization
+output-dir: lib/src/localization/generated
+output-localization-file: l10n.dart
+synthetic-package: false
+nullable-getter: false
+
+untranslated-messages-file: untranslated_messages.txt

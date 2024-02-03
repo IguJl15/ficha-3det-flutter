@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:ficha_3det_victory/src/localization/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,10 +29,6 @@ class MyApp extends StatelessWidget {
         return MaterialApp.router(
           restorationScopeId: 'app',
           scrollBehavior: const MyCustomScrollBehavior(),
-
-          // Provide the generated AppLocalizations to the MaterialApp. This
-          // allows descendant Widgets to display the correct translations
-          // depending on the user's locale.
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -41,9 +37,9 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: const [
             Locale('pt', ''),
+            Locale('en', ''),
           ],
-          onGenerateTitle: (BuildContext context) => AppLocalizations.of(context)!.appTitle,
-
+          onGenerateTitle: (BuildContext context) => AppLocalizations.of(context).home_appTitle,
           theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
           darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
           themeMode: settingsController.themeMode,
@@ -69,11 +65,11 @@ class _SplashPageState extends State<SplashPage> {
       splashScreenBody: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Image.asset(splashImage), const Text("Olá")],
+          children: [Image.asset(splashImage), Text(context.l!.splash_hello)],
         ),
       ),
       asyncNavigationCallback: () async {
-        Future.delayed(const Duration(seconds: 5)).then(
+        Future.delayed(const Duration(seconds: 2)).then(
           (value) => context.goNamed("home"),
         );
       },
